@@ -10,10 +10,12 @@
         <div class="white-bg">
             <img :src="oneRoom[modalIndex].image" class="room-img">
             <h4>{{ oneRoom[modalIndex].title }}</h4>
-            <p>가격 : {{ oneRoom[modalIndex].price }}</p>
+            <p>{{ oneRoom[modalIndex].content }}</p>
+            <p>가격 : {{ oneRoom[modalIndex].price }} 원</p>
             <h2 @click="modalOne = !modalOne">닫기</h2>
         </div>
     </div>
+    <Modal/>
 
     <div class="menu">
         <!-- 
@@ -25,7 +27,7 @@
         -->
         <a v-for="(a,i) in menus" :key="i">{{a}}</a>
     </div>
-
+    <Discount/>
     <!-- <div v-for="(a,i) in products" :key="i">
         <h4 class="red">{{products[i]}}</h4>
         <p>50만원</p>
@@ -70,6 +72,8 @@
 <script>
 
 import oneRoom from './assets/oneroom.js';
+import discount from './components/Discount.vue';
+import modal from './components/Modal.vue';
 
 export default {
     name: 'App',
@@ -93,6 +97,8 @@ export default {
         }
     },
     components: {
+        Discount : discount,
+        Modal : modal,
     }
 }
 </script>
