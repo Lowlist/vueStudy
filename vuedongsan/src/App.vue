@@ -1,8 +1,16 @@
 <template>
-    <div class="black-bg" v-if="modalOne == true">
+
+    <!-- 
+        v-if문도 있고 v-else도 있고
+        v-else-if문도 있음
+        자바스크립트랑 동일 v-if 걸고 a != b or a == b 이런거 가능
+    -->
+
+    <div class="black-bg" v-if="modalOne">
         <div class="white-bg">
-            <h4>상세페이지임</h4>
-            <p>상세페이지 내용임</p>
+            <img :src="oneRoom[modalIndex].image" class="room-img">
+            <h4>{{ oneRoom[modalIndex].title }}</h4>
+            <p>가격 : {{ oneRoom[modalIndex].price }}</p>
             <h2 @click="modalOne = !modalOne">닫기</h2>
         </div>
     </div>
@@ -30,9 +38,9 @@
     <div>
         <img alt="Vue logo" src="./assets/logo.png">
         <h4>원룸샵</h4>
-        <div v-for="(a,i) in oneRoom" :key="i">
+        <div v-for="(a,i) in oneRoom" :key="i" class="room-product">
             <img :src="oneRoom[i].image" class="room-img">
-            <h4 @click="modalOne = true">{{oneRoom[i].title}}</h4>
+            <h4 @click="clickModal(i);">{{oneRoom[i].title}}</h4>
             <p>{{oneRoom[i].price}}</p>
         </div>
         <!-- <div>
@@ -71,12 +79,17 @@ export default {
             menus : ['home', 'Shop', 'About'],
             products : ['역삼동원룸', '천호동원룸', '마포구원룸'],
             신고수 : [0,0,0],
-            oneRoom : oneRoom
+            oneRoom : oneRoom,
+            modalIndex : 0
         }
     },
     methods : {
         clickPlus(){
             this.신고수 += 1;
+        },
+        clickModal(index){
+            this.modalOne = true;
+            this.modalIndex = index;
         }
     },
     components: {
@@ -124,5 +137,9 @@ div{
 .white-bg h2{
     border: 1px solid black;
     padding: 15px;
+    cursor: pointer;
+}
+.room-product h4{
+    cursor: pointer;
 }
 </style>
