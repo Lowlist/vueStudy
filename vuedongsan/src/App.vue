@@ -2,12 +2,17 @@
     <div>
         <img alt="Vue logo" src="./assets/logo.png">
         <div>
-            <h4>XX 원룸</h4>
-            <p>{{price1}} 만원</p>
+            원룸샵
+            <h4 class="red">{{products[0]}}</h4>
+            <p>50만원</p>
         </div>
         <div>
-            <h4>XX 원룸</h4>
-            <p>{{price2}} 만원</p>
+            <h4>{{products[1]}}</h4>
+            <p>가격은아무거나</p>
+        </div>
+        <div>
+            <h4>{{products[2]}}</h4>
+            <p>가격은아무거나</p>
         </div>
     </div>
 </template>
@@ -17,9 +22,8 @@
 export default {
     name: 'App',
     data(){
-        return {
-            price1 : 60,
-            price2 : 70,
+        return {    
+            products : ['역삼동원룸', '천호동원룸', '마포구원룸']
         }
     },
     components: {
