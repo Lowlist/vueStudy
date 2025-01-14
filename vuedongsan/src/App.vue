@@ -18,18 +18,24 @@
         <a v-for="(a,i) in menus" :key="i">{{a}}</a>
     </div>
 
+    <!-- <div v-for="(a,i) in products" :key="i">
+        <h4 class="red">{{products[i]}}</h4>
+        <p>50만원</p>
+    </div> -->
+    <!-- 
+        @click or v-on:click = "JavaScript"  
+    -->
+    <!-- <button @click="신고수 += 1">허위매물 신고</button> <span>신고수 : {{신고수}}</span> -->
+
     <div>
         <img alt="Vue logo" src="./assets/logo.png">
         <h4>원룸샵</h4>
-        <!-- <div v-for="(a,i) in products" :key="i">
-            <h4 class="red">{{products[i]}}</h4>
-            <p>50만원</p>
-        </div> -->
-        <!-- 
-            @click or v-on:click = "JavaScript"  
-        -->
-        <!-- <button @click="신고수 += 1">허위매물 신고</button> <span>신고수 : {{신고수}}</span> -->
-        <div>
+        <div v-for="(a,i) in oneRoom" :key="i">
+            <img :src="oneRoom[i].image" class="room-img">
+            <h4 @click="modalOne = true">{{oneRoom[i].title}}</h4>
+            <p>{{oneRoom[i].price}}</p>
+        </div>
+        <!-- <div>
             <img src="./assets/room0.jpg" class="room-img">
             <h4 @click="modalOne = true">{{products[0]}}</h4>
             <p>50만원</p>
@@ -49,12 +55,13 @@
             <p>70만원</p>
             <button @click="신고수[2]++">허위매물 신고</button>
             <span>신고수 : {{신고수[2]}}</span>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
 
+import oneRoom from './assets/oneroom.js';
 
 export default {
     name: 'App',
@@ -63,7 +70,8 @@ export default {
             modalOne : false,
             menus : ['home', 'Shop', 'About'],
             products : ['역삼동원룸', '천호동원룸', '마포구원룸'],
-            신고수 : [0,0,0]
+            신고수 : [0,0,0],
+            oneRoom : oneRoom
         }
     },
     methods : {
