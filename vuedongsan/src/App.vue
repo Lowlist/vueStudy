@@ -14,21 +14,47 @@
     <div>
         <img alt="Vue logo" src="./assets/logo.png">
         <h4>원룸샵</h4>
-        <div v-for="(a,i) in products" :key="i">
-            <h4 class="red">{{a}}</h4>
+        <!-- <div v-for="(a,i) in products" :key="i">
+            <h4 class="red">{{products[i]}}</h4>
             <p>50만원</p>
+        </div> -->
+        <div>
+            <h4>{{products[0]}}</h4>
+            <p>50만원</p>
+            <!-- 
+                @click or v-on:click = "JavaScript"  
+            -->
+            <!-- <button @click="신고수 += 1">허위매물 신고</button> <span>신고수 : {{신고수}}</span> -->
+            <button @click="신고수[0]++">허위매물 신고</button> <span>신고수 : {{신고수[0]}}</span>
+        </div>
+        <div>
+            <h4>{{products[1]}}</h4>
+            <p>60만원</p>
+            <button @click="신고수[1]++">허위매물 신고</button> <span>신고수 : {{신고수[1]}}</span>
+        </div>
+        <div>
+            <h4>{{products[2]}}</h4>
+            <p>70만원</p>
+            <button @click="신고수[2]++">허위매물 신고</button> <span>신고수 : {{신고수[2]}}</span>
         </div>
     </div>
 </template>
 
 <script>
 
+
 export default {
     name: 'App',
     data(){
         return {    
             menus : ['home', 'Shop', 'About'],
-            products : ['역삼동원룸', '천호동원룸', '마포구원룸']
+            products : ['역삼동원룸', '천호동원룸', '마포구원룸'],
+            신고수 : [0,0,0]
+        }
+    },
+    methods : {
+        clickPlus(){
+            this.신고수 += 1;
         }
     },
     components: {
