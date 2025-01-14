@@ -1,12 +1,11 @@
 <template>
-
     <!-- 
         v-if문도 있고 v-else도 있고
         v-else-if문도 있음
         자바스크립트랑 동일 v-if 걸고 a != b or a == b 이런거 가능
     -->
 
-    <div class="black-bg" v-if="modalOne">
+    <!-- <div class="black-bg" v-if="modalOne">
         <div class="white-bg">
             <img :src="oneRoom[modalIndex].image" class="room-img">
             <h4>{{ oneRoom[modalIndex].title }}</h4>
@@ -14,8 +13,11 @@
             <p>가격 : {{ oneRoom[modalIndex].price }} 원</p>
             <h2 @click="modalOne = !modalOne">닫기</h2>
         </div>
-    </div>
-    <Modal/>
+    </div> -->
+
+    <!-- v-bind or :데이터이름="데이터이름" -->
+    <!-- props 전송하려면 3-step props{}에 등록 :문법으로 bind props로 받아온건 읽기전용 -->
+    <Modal :oneRoom="oneRoom" :modalIndex="modalIndex" :modalOne="modalOne"/>
 
     <div class="menu">
         <!-- 
@@ -37,15 +39,7 @@
     -->
     <!-- <button @click="신고수 += 1">허위매물 신고</button> <span>신고수 : {{신고수}}</span> -->
 
-    <div>
-        <img alt="Vue logo" src="./assets/logo.png">
-        <h4>원룸샵</h4>
-        <div v-for="(a,i) in oneRoom" :key="i" class="room-product">
-            <img :src="oneRoom[i].image" class="room-img">
-            <h4 @click="clickModal(i);">{{oneRoom[i].title}}</h4>
-            <p>{{oneRoom[i].price}}</p>
-        </div>
-        <!-- <div>
+    <!-- <div>
             <img src="./assets/room0.jpg" class="room-img">
             <h4 @click="modalOne = true">{{products[0]}}</h4>
             <p>50만원</p>
@@ -66,7 +60,18 @@
             <button @click="신고수[2]++">허위매물 신고</button>
             <span>신고수 : {{신고수[2]}}</span>
         </div> -->
+    <div>
+        <img alt="Vue logo" src="./assets/logo.png">
+        <h4>원룸샵</h4>
+
+        <!-- <div v-for="(a,i) in oneRoom" :key="i" class="room-product">
+            <img :src="oneRoom[i].image" class="room-img">
+            <h4 @click="clickModal(i);">{{oneRoom[i].title}}</h4>
+            <p>{{oneRoom[i].price}}</p>
+        </div> -->
+        <Card :oneRoom="oneRoom"/>
     </div>
+
 </template>
 
 <script>
@@ -74,6 +79,7 @@
 import oneRoom from './assets/oneroom.js';
 import discount from './components/Discount.vue';
 import modal from './components/Modal.vue';
+import card from './components/Card.vue';
 
 export default {
     name: 'App',
@@ -99,6 +105,7 @@ export default {
     components: {
         Discount : discount,
         Modal : modal,
+        Card : card,
     }
 }
 </script>
