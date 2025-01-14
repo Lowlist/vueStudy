@@ -69,7 +69,7 @@
             <h4 @click="clickModal(i);">{{oneRoom[i].title}}</h4>
             <p>{{oneRoom[i].price}}</p>
         </div> -->
-        <Card :oneRoom="oneRoom"/>
+        <Card v-for="(a,i) in oneRoom" :key="i" :oneRoom="a"/>
     </div>
 
 </template>
