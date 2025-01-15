@@ -1,5 +1,13 @@
 <template>
-    <Modal @modalOff="modalOne = $event" :oneRoom="oneRoom" :modalIndex="modalIndex" :modalOne="modalOne"/>
+    <!-- <div class="start" :class="{ end : modalOne }"> -->
+    <!-- </div> -->
+    <!-- vue 트렌지션 애니메이션 주기 너무 편함 -->
+     <Transition name="fade">
+         <Modal @modalOff="modalOne = $event" 
+         :oneRoom="oneRoom" 
+         :modalIndex="modalIndex" 
+         :modalOne="modalOne"/>
+     </Transition>
     <div class="menu">
         <a v-for="(a,i) in menus" :key="i">{{a}}</a>
     </div>
@@ -92,6 +100,40 @@ div{
 }
 .room-product h4{
     cursor: pointer;
+}
+.start{
+    opacity: 0;
+    transition: all 0.5s;
+}
+.end{
+    opacity: 1;
+}
+/* 입장이벤트 */
+/* 시작 */
+.fade-enter-from {
+    opacity: 0;
+}
+/* 활성화 */
+.fade-enter-active {
+    transition: all 0.5s;
+}
+/* 끝 */
+.fade-enter-to {
+    opacity: 1;
+}
+
+/* 퇴장이벤트 */
+/* 시작 */
+.fade-leave-from {
+    transform: translateY(-1000px);
+}
+/* 활성화 */
+.fade-leave-active {
+    transition: all 1s;
+}
+/* 끝 */
+.fade-leave-to {
+    transform: translateY(0px);
 }
 </style>
 

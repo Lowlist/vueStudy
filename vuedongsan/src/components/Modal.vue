@@ -30,7 +30,7 @@ export default {
         // useEffect랑 비슷한듯?
         // a는 변경후 b는 변경전 (매개변수)
         month(a){
-            if(!this.numberRegEx.test(a)){
+            if(!this.numberRegEx.test(a) && a.length >= 1){
                 alert("테스트");
                 return this.month = 1;
             }
