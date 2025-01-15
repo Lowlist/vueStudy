@@ -1,75 +1,13 @@
 <template>
-    <!-- 
-        v-if문도 있고 v-else도 있고
-        v-else-if문도 있음
-        자바스크립트랑 동일 v-if 걸고 a != b or a == b 이런거 가능
-    -->
-
-    <!-- <div class="black-bg" v-if="modalOne">
-        <div class="white-bg">
-            <img :src="oneRoom[modalIndex].image" class="room-img">
-            <h4>{{ oneRoom[modalIndex].title }}</h4>
-            <p>{{ oneRoom[modalIndex].content }}</p>
-            <p>가격 : {{ oneRoom[modalIndex].price }} 원</p>
-            <h2 @click="modalOne = !modalOne">닫기</h2>
-        </div>
-    </div> -->
-
-    <!-- v-bind or :데이터이름="데이터이름" -->
-    <!-- props 전송하려면 3-step props{}에 등록 :문법으로 bind props로 받아온건 읽기전용 -->
-    <Modal :oneRoom="oneRoom" :modalIndex="modalIndex" :modalOne="modalOne"/>
-
+    <Modal @modalOff="modalOne = $event" :oneRoom="oneRoom" :modalIndex="modalIndex" :modalOne="modalOne"/>
     <div class="menu">
-        <!-- 
-            v-for 반복문 = {변수명} in {반복횟수} :key="키값"
-            1.자료안의 데이터 갯수만큼 반복됨
-            2.작명한 변수는 데이터안의 자료가 됨
-            :key=""의 용도 = 반복문 돌린 요소를 컴퓨터가 구분하기 위해 사용
-            .map 과 동일하게 (a,i) 이런식으로 작명하면 똑같은 기능이 됨.
-        -->
         <a v-for="(a,i) in menus" :key="i">{{a}}</a>
     </div>
     <Discount/>
-    <!-- <div v-for="(a,i) in products" :key="i">
-        <h4 class="red">{{products[i]}}</h4>
-        <p>50만원</p>
-    </div> -->
-    <!-- 
-        @click or v-on:click = "JavaScript"  
-    -->
-    <!-- <button @click="신고수 += 1">허위매물 신고</button> <span>신고수 : {{신고수}}</span> -->
-
-    <!-- <div>
-            <img src="./assets/room0.jpg" class="room-img">
-            <h4 @click="modalOne = true">{{products[0]}}</h4>
-            <p>50만원</p>
-            <button @click="신고수[0]++">허위매물 신고</button>
-            <span>신고수 : {{신고수[0]}}</span>
-        </div>
-        <div>
-            <img src="./assets/room1.jpg" class="room-img">
-            <h4>{{products[1]}}</h4>
-            <p>60만원</p>
-            <button @click="신고수[1]++">허위매물 신고</button>
-            <span>신고수 : {{신고수[1]}}</span>
-        </div>
-        <div>
-            <img src="./assets/room2.jpg" class="room-img">
-            <h4>{{products[2]}}</h4>
-            <p>70만원</p>
-            <button @click="신고수[2]++">허위매물 신고</button>
-            <span>신고수 : {{신고수[2]}}</span>
-        </div> -->
     <div>
         <img alt="Vue logo" src="./assets/logo.png">
         <h4>원룸샵</h4>
-
-        <!-- <div v-for="(a,i) in oneRoom" :key="i" class="room-product">
-            <img :src="oneRoom[i].image" class="room-img">
-            <h4 @click="clickModal(i);">{{oneRoom[i].title}}</h4>
-            <p>{{oneRoom[i].price}}</p>
-        </div> -->
-        <Card v-for="(a,i) in oneRoom" :key="i" :oneRoom="a"/>
+        <Card @modalOpen="clickModal(i)" v-for="(a,i) in oneRoom" :key="i" :oneRoom="a"/>
     </div>
 
 </template>
@@ -156,3 +94,67 @@ div{
     cursor: pointer;
 }
 </style>
+
+    <!-- 
+        v-if문도 있고 v-else도 있고
+        v-else-if문도 있음
+        자바스크립트랑 동일 v-if 걸고 a != b or a == b 이런거 가능
+    -->
+
+    <!-- <div class="black-bg" v-if="modalOne">
+        <div class="white-bg">
+            <img :src="oneRoom[modalIndex].image" class="room-img">
+            <h4>{{ oneRoom[modalIndex].title }}</h4>
+            <p>{{ oneRoom[modalIndex].content }}</p>
+            <p>가격 : {{ oneRoom[modalIndex].price }} 원</p>
+            <h2 @click="modalOne = !modalOne">닫기</h2>
+        </div>
+    </div> -->
+
+    <!-- v-bind or :데이터이름="데이터이름" -->
+    <!-- props 전송하려면 3-step props{}에 등록 :문법으로 bind props로 받아온건 읽기전용 -->
+
+    <!-- 
+            v-for 반복문 = {변수명} in {반복횟수} :key="키값"
+            1.자료안의 데이터 갯수만큼 반복됨
+            2.작명한 변수는 데이터안의 자료가 됨
+            :key=""의 용도 = 반복문 돌린 요소를 컴퓨터가 구분하기 위해 사용
+            .map 과 동일하게 (a,i) 이런식으로 작명하면 똑같은 기능이 됨.
+        -->
+
+    <!-- <div v-for="(a,i) in products" :key="i">
+        <h4 class="red">{{products[i]}}</h4>
+        <p>50만원</p>
+    </div> -->
+    <!-- 
+        @click or v-on:click = "JavaScript"  
+    -->
+    <!-- <button @click="신고수 += 1">허위매물 신고</button> <span>신고수 : {{신고수}}</span> -->
+
+    <!-- <div>
+            <img src="./assets/room0.jpg" class="room-img">
+            <h4 @click="modalOne = true">{{products[0]}}</h4>
+            <p>50만원</p>
+            <button @click="신고수[0]++">허위매물 신고</button>
+            <span>신고수 : {{신고수[0]}}</span>
+        </div>
+        <div>
+            <img src="./assets/room1.jpg" class="room-img">
+            <h4>{{products[1]}}</h4>
+            <p>60만원</p>
+            <button @click="신고수[1]++">허위매물 신고</button>
+            <span>신고수 : {{신고수[1]}}</span>
+        </div>
+        <div>
+            <img src="./assets/room2.jpg" class="room-img">
+            <h4>{{products[2]}}</h4>
+            <p>70만원</p>
+            <button @click="신고수[2]++">허위매물 신고</button>
+            <span>신고수 : {{신고수[2]}}</span>
+        </div> -->
+        <!-- <div v-for="(a,i) in oneRoom" :key="i" class="room-product">
+            <img :src="oneRoom[i].image" class="room-img">
+            <h4 @click="clickModal(i);">{{oneRoom[i].title}}</h4>
+            <p>{{oneRoom[i].price}}</p>
+        </div> -->
+        <!-- methods에서 데이터 참조하려면 무조건 this.붙여야됨 -->

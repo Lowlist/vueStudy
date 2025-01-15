@@ -5,7 +5,7 @@
             <h4>{{ oneRoom[modalIndex].title }}</h4>
             <p>{{ oneRoom[modalIndex].content }}</p>
             <p>가격 : {{ oneRoom[modalIndex].price }} 원</p>
-            <!-- <h2 @click="modalOne = !modalOne">닫기</h2> -->
+            <h2 @click="$emit('modalOff',false)">닫기</h2>
         </div>
     </div>
 </template>
