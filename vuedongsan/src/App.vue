@@ -12,6 +12,10 @@
         <a v-for="(a,i) in menus" :key="i">{{a}}</a>
     </div>
     <Discount/>
+    <button @click="priceSort(1)">낮은가격순 정렬</button>
+    <button @click="priceSort(2)">높은가격순 정렬</button>
+    <button @click="priceSort(3)">가나다 정렬</button>
+    <button @click="priceSort(4)">되돌리기</button>
     <div>
         <img alt="Vue logo" src="./assets/logo.png">
         <h4>원룸샵</h4>
@@ -36,6 +40,7 @@ export default {
             products : ['역삼동원룸', '천호동원룸', '마포구원룸'],
             신고수 : [0,0,0],
             oneRoom : oneRoom,
+            oneRoomOri : [...oneRoom],
             modalIndex : 0
         }
     },
@@ -46,6 +51,23 @@ export default {
         clickModal(index){
             this.modalOne = true;
             this.modalIndex = index;
+        },
+        priceSort(btnNumber){
+            if(btnNumber == 1){
+                this.oneRoom.sort((a,b) => a.price - b.price);
+            }else if(btnNumber == 2){
+                this.oneRoom.sort((a,b) => b.price - a.price);
+            }else if(btnNumber == 3){
+                this.oneRoom.sort((a,b) => {
+                    let ab = a.title.toString().toLowerCase();
+                    let bc = b.title.toString().toLowerCase();
+                    return (ab < bc) ? -1 : (ab == bc) ? 0 : 1;
+                });
+            }else if(btnNumber == 4){
+                this.oneRoom = [...this.oneRoomOri];
+            }else{
+                this.oneRoom = [...this.oneRoomOri];
+            }
         }
     },
     components: {
