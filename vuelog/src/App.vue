@@ -40,15 +40,30 @@
             </div>
         </div>
     </nav>
+
+    <div class="containerMain">
+        <h5>React 개발자의 블로그입니다.</h5>
+        <p>- Vue로 만들어졌습니다. -</p>
+    </div>
+    <List :blogList="blogList"/>
 </template>
 
 <script>
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import list from './components/List.vue';
+import blog from './assets/blog';
 
 export default {
     name: 'App',
-    components: {}
+    data(){
+        return{
+            blogList : blog,
+        }
+    },
+    components: {
+        List : list,
+    }
 }
 </script>
 
@@ -59,5 +74,8 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+}
+.containerMain{
+    margin-top : 80px;
 }
 </style>
