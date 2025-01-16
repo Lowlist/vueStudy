@@ -1,7 +1,6 @@
 <template lang="">
     <div v-for="(a,i) in blogList" :key="i">
         <h5>{{ a.title }}</h5>
-        <p>{{ a.content }}</p>
         <p>{{ a.date }}</p>
     </div>
 </template>
