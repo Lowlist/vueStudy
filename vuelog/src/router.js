@@ -15,6 +15,12 @@ const routes = [
   {
     path: "/list",
     component: List,
+    // 이런식으로 코드적어주면 로그인 검증같은것도 URL로 채갈수 있을듯
+    // beforeEnter: ()=>{
+    //   if (로그인했냐 == false) {
+    //     return '/login'
+    //   }
+    // }
   },
   {
     path: "/home",
