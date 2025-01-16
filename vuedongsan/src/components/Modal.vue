@@ -28,7 +28,8 @@ export default {
     },
     updated(){
         if(this.month == 2){
-            alert("경고창임");
+            alert("2개월은 안됨");
+            return this.month = 3;
         }
     },
     watch:{
