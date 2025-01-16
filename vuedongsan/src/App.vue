@@ -11,7 +11,9 @@
     <div class="menu">
         <a v-for="(a,i) in menus" :key="i">{{a}}</a>
     </div>
-    <Discount/>
+
+    <Discount v-if="showDiscount == true" :discountPrice="discountPrice"/>
+
     <button @click="priceSort(1)">낮은가격순 정렬</button>
     <button @click="priceSort(2)">높은가격순 정렬</button>
     <button @click="priceSort(3)">가나다 정렬</button>
@@ -37,11 +39,11 @@ export default {
         return {
             modalOne : false,
             menus : ['home', 'Shop', 'About'],
-            products : ['역삼동원룸', '천호동원룸', '마포구원룸'],
-            신고수 : [0,0,0],
             oneRoom : oneRoom,
             oneRoomOri : [...oneRoom],
-            modalIndex : 0
+            modalIndex : 0,
+            showDiscount : true,
+            discountPrice : 30,
         }
     },
     methods : {
@@ -70,6 +72,17 @@ export default {
             }
         }
     },
+    mounted(){
+        setInterval(()=> {
+            if(this.discountPrice > 0){
+                this.discountPrice = this.discountPrice -1
+            }
+        },1000);
+
+        setTimeout(()=> {
+            this.showDiscount = false
+        },30000);
+    },
     components: {
         Discount : discount,
         Modal : modal,
@@ -77,6 +90,20 @@ export default {
     }
 }
 </script>
+
+<!-- 
+    beforeCreate()
+    created()
+    beforeMount()
+    mounted()
+    beforeUpdate()
+    updated()
+    beforeUnmount()
+    unmounted()
+    beforeDestroy()
+    destroyed()
+-->
+
 
 <style>
 #app {

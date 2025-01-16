@@ -26,6 +26,11 @@ export default {
             numberRegEx : /[0-9]/,
         }
     },
+    updated(){
+        if(this.month == 2){
+            alert("경고창임");
+        }
+    },
     watch:{
         // useEffect랑 비슷한듯?
         // a는 변경후 b는 변경전 (매개변수)
