@@ -8,16 +8,17 @@
         </ul>
         <img src="./assets/logo.png" class="logo" />
     </div>
-    <Container :vuestaData="vuestaData"/>
+    <Container :vuestaData="vuestaData" :tapIndex="tapIndex"/>
+    <button @click="axiosRun()" class="more-Btn">더보기</button>
     <div class="footer">
         <ul class="footer-button-plus">
             <input type="file" id="file" class="inputfile" />
             <label for="file" class="input-plus">+</label>
         </ul>
     </div>
-    
-    <button @click="axiosRun()">더보기</button>
-
+    <button @click="tapIndex = 0"> 0번</button>
+    <button @click="tapIndex = 1"> 1번</button>
+    <button @click="tapIndex = 2"> 2번</button>
 </template>
 
 <script>
@@ -32,6 +33,7 @@ export default {
         return{
             vuestaData : vuestaData,
             index : 0,
+            tapIndex : 0,
         }
     },
     components: {
@@ -147,4 +149,5 @@ ul {
     border-right: 1px solid #eee;
     border-left: 1px solid #eee;
 }
+
 </style>
