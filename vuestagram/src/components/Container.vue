@@ -1,8 +1,6 @@
 <template>
     <div>
-        <PostView 
-        v-for="(a,i) in vuestaData" 
-        :key="i" :vuestaData="vuestaData[i]"/>
+        <PostView v-for="(a,i) in vuestaData" :key="i" :vuestaData="a"/>
     </div>
 </template>
 <script>

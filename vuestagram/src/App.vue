@@ -15,21 +15,44 @@
             <label for="file" class="input-plus">+</label>
         </ul>
     </div>
+    
+    <button @click="axiosRun()">더보기</button>
+
 </template>
 
 <script>
 
 import Container from './components/Container.vue';
 import vuestaData from './assets/vuestaData';
+import axios from 'axios';
+
 export default {
     name: 'App',
     data(){
         return{
             vuestaData : vuestaData,
+            index : 0,
         }
     },
     components: {
         Container: Container,
+    },
+    methods : { 
+        axiosRun(){
+            axios.get(`https://codingapple1.github.io/vue/more${this.index}.json`)
+            .then((response) => {
+                // this. 안붙이면 재랜더링 안됨 ㅡㅡ
+                this.vuestaData.push(response.data);
+                this.index++;
+                console.log("바보야"+this.index);
+            })
+            .catch((err)=>
+                console.log(err)
+            )
+        }
+    },
+    updated(){
+        console.log("업데이트 완")
     }
 }
 </script>
