@@ -7,7 +7,7 @@
         <div v-if="tapIndex == 1">
             <div class="upload-image" :style="{backgroundImage : `url(${uploadImg})`}"></div>
             <div class="filters">
-                <FilterBox :uploadImg="uploadImg" v-for="a in filtersData" :key="a"></FilterBox>
+                <FilterBox :filtersData="a" :uploadImg="uploadImg" v-for="a in filtersData" :key="a"></FilterBox>
             </div>
         </div>
         <!-- 글작성페이지 -->

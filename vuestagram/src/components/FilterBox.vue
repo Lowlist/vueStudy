@@ -1,11 +1,12 @@
 <template>
-    <div class="filter-item" :style="{backgroundImage : `url(${uploadImg})`}"></div>
+    <div :class="`${filtersData} filter-item`" :style="{backgroundImage : `url(${uploadImg})`}"></div>
 </template>
 <script>
 export default {
     name: 'filterboxExport',
     props: {
         uploadImg : String,
+        filtersData : String,
     }
 }
 </script>
