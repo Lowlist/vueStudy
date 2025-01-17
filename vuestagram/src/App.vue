@@ -8,11 +8,11 @@
         </ul>
         <img src="./assets/logo.png" class="logo" />
     </div>
-    <Container :vuestaData="vuestaData" :tapIndex="tapIndex"/>
+    <Container :vuestaData="vuestaData" :tapIndex="tapIndex" :uploadImg="uploadImg"/>
     <button @click="axiosRun()" class="more-Btn">더보기</button>
     <div class="footer">
         <ul class="footer-button-plus">
-            <input type="file" id="file" class="inputfile" />
+            <input @change="upload" type="file" id="file" class="inputfile" />
             <label for="file" class="input-plus">+</label>
         </ul>
     </div>
@@ -34,6 +34,7 @@ export default {
             vuestaData : vuestaData,
             index : 0,
             tapIndex : 0,
+            uploadImg : "",
         }
     },
     components: {
@@ -46,15 +47,23 @@ export default {
                 // this. 안붙이면 재랜더링 안됨 ㅡㅡ
                 this.vuestaData.push(response.data);
                 this.index++;
-                console.log("바보야"+this.index);
             })
             .catch((err)=>
                 console.log(err)
             )
+        },
+        upload(e){
+            // 파일업로드 2가지 방법이 있음
+            // FileReader() 파일을 글자로 변환해줌
+            // URL.createObjectURL() 이미지의 가상 URL을 생성해줌
+            let abc = e.target.files;
+            if(abc[0].type.indexOf("image/") == 0){
+                let url = URL.createObjectURL(abc[0]);
+                this.uploadImg = url;
+                console.log(url);
+                this.tapIndex = 1;
+            }
         }
-    },
-    updated(){
-        console.log("업데이트 완")
     }
 }
 </script>
