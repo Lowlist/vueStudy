@@ -4,11 +4,12 @@
             <li>Cancel</li>
         </ul>
         <ul class="header-button-right">
-            <li>Next</li>
+            <li v-if="tapIndex == 1" @click="nextTap()">Next</li>
+            <li v-if="tapIndex == 2" @click="addPost()">발행</li>
         </ul>
         <img src="./assets/logo.png" class="logo" />
     </div>
-    <Container :vuestaData="vuestaData" :tapIndex="tapIndex" :uploadImg="uploadImg"/>
+    <Container :vuestaData="vuestaData" :tapIndex="tapIndex" :uploadImg="uploadImg" @uploadContent="uploadContent = $event"/>
     <button @click="axiosRun()" class="more-Btn">더보기</button>
     <div class="footer">
         <ul class="footer-button-plus">
@@ -16,9 +17,6 @@
             <label for="file" class="input-plus">+</label>
         </ul>
     </div>
-    <button @click="tapIndex = 0"> 0번</button>
-    <button @click="tapIndex = 1"> 1번</button>
-    <button @click="tapIndex = 2"> 2번</button>
 </template>
 
 <script>
@@ -35,6 +33,7 @@ export default {
             index : 0,
             tapIndex : 0,
             uploadImg : "",
+            uploadContent : "",
         }
     },
     components: {
@@ -60,8 +59,28 @@ export default {
             if(abc[0].type.indexOf("image/") == 0){
                 let url = URL.createObjectURL(abc[0]);
                 this.uploadImg = url;
-                console.log(url);
                 this.tapIndex = 1;
+            }
+        },
+        nextTap(){
+            if(this.uploadImg != ""){
+                this.tapIndex = 2;
+            }
+        },
+        addPost(){
+            if(this.tapIndex == 2){
+                let posts= {
+                    name: "Kim Hyun",
+                    userImage: "https://picsum.photos/100?random=3",
+                    postImage: this.uploadImg,
+                    likes: 36,
+                    date: "May 15",
+                    liked: false,
+                    content: this.uploadContent,
+                    filter: "perpetua"
+                }
+                this.vuestaData.unshift(posts)
+                this.tapIndex = 0;
             }
         }
     }

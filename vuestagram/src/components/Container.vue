@@ -16,9 +16,9 @@
         </div>
         <!-- 글작성페이지 -->
         <div v-if="tapIndex == 2">
-            <div class="upload-image"></div>
+            <div class="upload-image" :style="{backgroundImage : `url(${uploadImg})`}"></div>
             <div class="write">
-                <textarea class="write-box">write!</textarea>
+                <textarea class="write-box" @input="$emit('uploadContent', $event.target.value)">write!</textarea>
             </div>
         </div>
     </div>
