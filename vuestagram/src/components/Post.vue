@@ -1,17 +1,19 @@
 <template>
     <div class="post">
         <div class="post-header">
-            <img :src="vuestaData[postIndex].userImage" class="profile">
-            <span class="profile-name">{{vuestaData[postIndex].name}}</span>
+            <!-- <img :src="vuestaData[postIndex].userImage" class="profile"> -->
+            <div :style="{backgroundImage : `url(${vuestaData.userImage})`}" class="profile"></div>
+            <span class="profile-name">{{vuestaData.name}}</span>
         </div>
-        <img :src="vuestaData[postIndex].postImage" class="post-body">
+        <!-- <img :src="vuestaData.postImage" class="post-body"> -->
+        <div :style="{backgroundImage : `url(${vuestaData.postImage})`}" class="post-body"></div>
         <div class="post-content">
-            <p>{{vuestaData[postIndex].likes}} Likes</p>
+            <p>{{vuestaData.likes}} Likes</p>
             <p>
-                <strong>{{vuestaData[postIndex].name}}</strong>
-                {{vuestaData[postIndex].content}}
+                <strong>{{vuestaData.name}}</strong>
+                {{vuestaData.content}}
             </p>
-            <p class="date">{{vuestaData[postIndex].date}}</p>
+            <p class="date">{{vuestaData.date}}</p>
         </div>
     </div>
 </template>
@@ -20,7 +22,6 @@ export default {
     name: 'postExport',
     props:{
         vuestaData : Object,
-        postIndex : Number,
     }
 }
 </script>

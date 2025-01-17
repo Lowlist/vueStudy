@@ -2,8 +2,7 @@
     <div>
         <PostView 
         v-for="(a,i) in vuestaData" 
-        :key="i" :vuestaData="vuestaData" 
-        :postIndex="i"/>
+        :key="i" :vuestaData="vuestaData[i]"/>
     </div>
 </template>
 <script>
