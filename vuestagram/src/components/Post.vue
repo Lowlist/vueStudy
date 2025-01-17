@@ -1,29 +1,36 @@
-<template lang="">
+<template>
     <div class="post">
         <div class="post-header">
-            <div class="profile"></div>
-            <span class="profile-name">ChanKim</span>
+            <img :src="vuestaData[postIndex].userImage" class="profile">
+            <span class="profile-name">{{vuestaData[postIndex].name}}</span>
         </div>
-        <div class="post-body"></div>
+        <img :src="vuestaData[postIndex].postImage" class="post-body">
         <div class="post-content">
-            <p>43 Likes</p>
-            <p><strong>글쓴이아이디</strong> 임시내용</p>
-            <p class="date">May 15</p>
+            <p>{{vuestaData[postIndex].likes}} Likes</p>
+            <p>
+                <strong>{{vuestaData[postIndex].name}}</strong>
+                {{vuestaData[postIndex].content}}
+            </p>
+            <p class="date">{{vuestaData[postIndex].date}}</p>
         </div>
     </div>
 </template>
 <script>
 export default {
     name: 'postExport',
+    props:{
+        vuestaData : Object,
+        postIndex : Number,
+    }
 }
 </script>
+<!-- lang="" << 이거 중복되면 에러남  -->
 <style>
 .post {
     width: 100%;
 }
 
 .profile {
-    background-image: url("https://picsum.photos/100?random=0");
     width: 30px;
     height: 30px;
     background-size: 100%;
@@ -45,7 +52,6 @@ export default {
 }
 
 .post-body {
-    background-image: url("https://picsum.photos/600?random=0");
     height: 450px;
     background-position: center;
     background-size: cover;

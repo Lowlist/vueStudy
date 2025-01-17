@@ -1,8 +1,9 @@
-<template lang="">
+<template>
     <div>
-        <PostView></PostView>
-        <PostView></PostView>
-        <PostView></PostView>
+        <PostView 
+        v-for="(a,i) in vuestaData" 
+        :key="i" :vuestaData="vuestaData" 
+        :postIndex="i"/>
     </div>
 </template>
 <script>
@@ -13,6 +14,9 @@ export default {
     name : "containerExport",
     components: {
         PostView: postView,
+    },
+    props:{
+        vuestaData : Object,
     }
 }
 </script>
