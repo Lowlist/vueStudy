@@ -7,11 +7,7 @@
         <div v-if="tapIndex == 1">
             <div class="upload-image" :style="{backgroundImage : `url(${uploadImg})`}"></div>
             <div class="filters">
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
+                <FilterBox :uploadImg="uploadImg" v-for="a in filtersData" :key="a"></FilterBox>
             </div>
         </div>
         <!-- 글작성페이지 -->
@@ -25,15 +21,20 @@
 </template>
 <script>
 import postView from './Post.vue';
+import FilterBox from './FilterBox.vue';
 
 export default {
     name: "containerExport",
     data(){
         return{
+            filtersData : [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
+                            "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
+                            "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"]
         }
     },
     components: {
         PostView: postView,
+        FilterBox: FilterBox,
     },
     props: {
         vuestaData: Object,
