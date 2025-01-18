@@ -7,7 +7,14 @@
         <div v-if="tapIndex == 1">
             <div class="upload-image" :style="{backgroundImage : `url(${uploadImg})`}"></div>
             <div class="filters">
-                <FilterBox :filtersData="a" :uploadImg="uploadImg" v-for="a in filtersData" :key="a"></FilterBox>
+                <FilterBox :filtersData="a" :uploadImg="uploadImg" v-for="a in filtersData" :key="a">
+                    <!-- 2.컴포넌트 태그 사이에 데이터 넣으면 slot으로 전송됨 -->
+                    <!-- name 지정 후 tamplate 태그로 감싸서 v-slot:a 이런식으로 데이터 묶어줘야함함  -->
+                    <!-- {{ a }} -->
+                    <!-- slot props = slot사용할떄 자식 데이터가 필요한 경우 사용 -->
+                    <template v-slot:xx>{{ a }}</template>
+                    <!-- <template v-slot:default="작명">{{ 작명 }}</template> -->
+                </FilterBox>
             </div>
         </div>
         <!-- 글작성페이지 -->
