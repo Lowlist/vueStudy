@@ -12,7 +12,7 @@ const store = createStore({
             name : 'kim',
             age : 20,
             vuestaDatas : [...vuestaData],
-            disLike : 0,
+            disLike : false,
         }
     },
     mutations :{
@@ -23,12 +23,12 @@ const store = createStore({
             state.age += payload;
         },
         likes(state,payload){
-            if(state.disLike == 0){
+            if(state.disLike == false){
                 state.vuestaDatas[payload].likes ++;
-                state.disLike ++;
+                state.disLike = true;
             } else {
                 state.vuestaDatas[payload].likes --;
-                state.disLike --;
+                state.disLike = false;
             }
         }
     }
