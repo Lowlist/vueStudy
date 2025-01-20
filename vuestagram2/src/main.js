@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import mitt from 'mitt'
-import store from './store';
 
 let emitter = mitt();
 let app = createApp(App);
@@ -10,6 +9,6 @@ let app = createApp(App);
 // app.config.globalProperties.axios = axios;
 // 이런식으로 사용하면 import 할필요없이 this.axios로 사용가능.
 app.config.globalProperties.emitter = emitter;
-// createApp(App).mount('#app')
 
-app.use(store).mount('#app')
+// createApp(App).mount('#app')
+app.mount('#app')

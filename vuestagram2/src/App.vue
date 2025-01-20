@@ -21,8 +21,6 @@
 
 <script>
 
-// Vuex 사용하면 코드가 길어짐
-
 import Container from './components/Container.vue';
 import vuestaData from './assets/vuestaData';
 import axios from 'axios';
