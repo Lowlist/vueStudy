@@ -5,6 +5,7 @@
 // 디버깅 편의성을 위해 여기에다가 수정하는것.
 import { createStore } from "vuex";
 import vuestaData from "./assets/vuestaData";
+import axios from "axios";
 
 const store = createStore({
     state(){
@@ -13,6 +14,7 @@ const store = createStore({
             age : 20,
             vuestaDatas : [...vuestaData],
             disLike : false,
+            more : {},
         }
     },
     mutations :{
@@ -30,8 +32,25 @@ const store = createStore({
                 state.vuestaDatas[payload].likes --;
                 state.disLike = false;
             }
+        },
+        setMore(state,payload){
+            // this.vuestaDatas.push(response.data);
+            state.more = payload
         }
-    }
+    },
+    // ajax 하는 곳
+    actions : {
+        getData(context){
+            axios.get(`https://codingapple1.github.io/vue/more0.json`)
+            .then((response) => {
+                console.log(response.data)
+                context.commit('setMore',response.data);
+            })
+            .catch((err)=>
+                console.log(err)
+            )
+        }
+    },
 })
 
 export default store;

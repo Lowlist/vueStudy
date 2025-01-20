@@ -9,8 +9,9 @@
         </ul>
         <img src="./assets/logo.png" class="logo" />
     </div>
+    <p>{{ $store.state.more }}</p>
+    <button @click="$store.dispatch('getData')" class="more-Btn">더보기</button>
     <Container :filterName="filterName" :vuestaData="vuestaData" :tapIndex="tapIndex" :uploadImg="uploadImg" @uploadContent="uploadContent = $event"/>
-    <button @click="axiosRun()" class="more-Btn">더보기</button>
     <div class="footer">
         <ul class="footer-button-plus">
             <input @change="upload" type="file" id="file" class="inputfile" />
