@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="tapIndex == 0">
-            <PostView v-for="(a,i) in vuestaData" :key="i" :vuestaData="a" />
+            <PostView v-for="(a,i) in vuestaData" :key="i" :vuestaData="a" @click="$store.commit('likes',i)" />
         </div>
         <!-- 필터선택페이지 -->
         <div v-if="tapIndex == 1">
