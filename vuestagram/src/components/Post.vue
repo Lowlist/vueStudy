@@ -6,7 +6,7 @@
             <span class="profile-name">{{vuestaData.name}}</span>
         </div>
         <!-- <img :src="vuestaData.postImage" class="post-body"> -->
-        <div :style="{backgroundImage : `url(${vuestaData.postImage})`}" class="post-body"></div>
+        <div :class="vuestaData.filter" :style="{backgroundImage : `url(${vuestaData.postImage})`}" class="post-body"></div>
         <div class="post-content">
             <p>{{vuestaData.likes}} Likes</p>
             <p>

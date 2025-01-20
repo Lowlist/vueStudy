@@ -1,5 +1,5 @@
 <template>
-    <div :class="`${filtersData} filter-item`" :style="{backgroundImage : `url(${uploadImg})`}">
+    <div @click="filterChange()" :class="`${filtersData} filter-item`" :style="{backgroundImage : `url(${uploadImg})`}">
         <!-- slot마다 name="a" 이런식으로 지정하면 여러개 가능 -->
         <!-- <slot :msg="msg"></slot> -->
         <slot name="xx"></slot>
@@ -16,6 +16,14 @@ export default {
     props: {
         uploadImg : String,
         filtersData : String,
+    },
+    methods:{
+        // this.emitter.emit('fires','데이터'); 주는곳 
+        // this.emitter.on('fires', (a)=>{console.log(a)}); 받는곳
+        // Vuex가 더 좋대요
+        filterChange(){
+            this.emitter.emit('filterChange',this.filtersData);
+        }
     }
 }
 </script>
@@ -30,5 +38,6 @@ export default {
     background-size: cover;
     background-position : center;
     text-shadow: 2px 2px black;
+    cursor: pointer;
 }
 </style>

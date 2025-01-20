@@ -5,7 +5,7 @@
         </div>
         <!-- 필터선택페이지 -->
         <div v-if="tapIndex == 1">
-            <div class="upload-image" :style="{backgroundImage : `url(${uploadImg})`}"></div>
+            <div :class="filterName" class="upload-image" :style="{backgroundImage : `url(${uploadImg})`}"></div>
             <div class="filters">
                 <FilterBox :filtersData="a" :uploadImg="uploadImg" v-for="a in filtersData" :key="a">
                     <!-- 2.컴포넌트 태그 사이에 데이터 넣으면 slot으로 전송됨 -->
@@ -19,7 +19,7 @@
         </div>
         <!-- 글작성페이지 -->
         <div v-if="tapIndex == 2">
-            <div class="upload-image" :style="{backgroundImage : `url(${uploadImg})`}"></div>
+            <div :class="filterName" class="upload-image" :style="{backgroundImage : `url(${uploadImg})`}"></div>
             <div class="write">
                 <textarea class="write-box" @input="$emit('uploadContent', $event.target.value)">write!</textarea>
             </div>
@@ -47,6 +47,7 @@ export default {
         vuestaData: Object,
         tapIndex : Number,
         uploadImg : String,
+        filterName : String,
     }
 }
 </script>

@@ -9,7 +9,7 @@
         </ul>
         <img src="./assets/logo.png" class="logo" />
     </div>
-    <Container :vuestaData="vuestaData" :tapIndex="tapIndex" :uploadImg="uploadImg" @uploadContent="uploadContent = $event"/>
+    <Container :filterName="filterName" :vuestaData="vuestaData" :tapIndex="tapIndex" :uploadImg="uploadImg" @uploadContent="uploadContent = $event"/>
     <button @click="axiosRun()" class="more-Btn">더보기</button>
     <div class="footer">
         <ul class="footer-button-plus">
@@ -34,6 +34,7 @@ export default {
             tapIndex : 0,
             uploadImg : "",
             uploadContent : "",
+            filterName : "",
         }
     },
     components: {
@@ -77,13 +78,18 @@ export default {
                     date: "May 15",
                     liked: false,
                     content: this.uploadContent,
-                    filter: "perpetua"
+                    filter: this.filterName,
                 }
                 this.vuestaData.unshift(posts)
                 this.tapIndex = 0;
             }
         }
-    }
+    },
+    mounted(){
+        this.emitter.on('filterChange', (a)=>{
+            this.filterName = a;
+        });
+    },
 }
 </script>
 
